@@ -4,440 +4,307 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dauns Menu Studio | Início</title>
+  <title>Dauns Menu Studio</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     :root {
-      --preto: #171717;
-      --cinza: #777;
-      --fundo: #f6f6f6;
-      --borda: #e9e9e9;
-      --branco: #fff;
+      --background: #090909;
+      --surface: #141414;
+      --border: #292929;
+      --text: #ffffff;
+      --muted: #a5a5a5;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      background: var(--fundo);
-      color: var(--preto);
+      background: var(--background);
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
-    }
-
-    button {
-      font-family: inherit;
     }
 
     /* CABEÇALHO */
 
-    .topbar {
+    .header {
+      width: 100%;
+      height: 72px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 20px 5%;
-      background: var(--branco);
-      border-bottom: 1px solid var(--borda);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
+      border-bottom: 1px solid var(--border);
+      background: #0c0c0c;
     }
 
     .logo {
       display: block;
       width: 120px;
-      max-height: 54px;
+      max-height: 48px;
       object-fit: contain;
     }
 
-    .brand-divider {
-      width: 1px;
-      height: 32px;
-      background: var(--borda);
-    }
-
-    .brand-name {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .brand-subtitle {
-      margin-top: 4px;
-      color: var(--cinza);
-      font-size: 11px;
-    }
-
-    .top-actions {
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .button {
-      min-height: 40px;
-      padding: 0 17px;
-      border: 1px solid var(--borda);
-      border-radius: 7px;
-      background: var(--branco);
-      color: var(--preto);
+    .header-button {
+      padding: 9px 16px;
+      border: 1px solid #383838;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
       font-size: 12px;
-      font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s ease;
     }
 
-    .button:hover {
-      background: #eee;
+    .header-button:hover {
+      background: #252525;
     }
 
-    .button-dark {
-      background: var(--preto);
-      border-color: var(--preto);
-      color: white;
-    }
-
-    .button-dark:hover {
-      background: #383838;
-      color: white;
-    }
-
-    /* CONTEÚDO PRINCIPAL */
+    /* ÁREA PRINCIPAL */
 
     main {
-      width: min(1120px, 90%);
+      width: 100%;
+      max-width: 1250px;
       margin: 0 auto;
-      padding: 54px 0 64px;
-    }
-
-    .welcome {
-      margin-bottom: 30px;
-    }
-
-    .eyebrow {
-      margin-bottom: 12px;
-      color: var(--cinza);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin-bottom: 12px;
-      font-size: clamp(29px, 4vw, 42px);
-      letter-spacing: -1.4px;
-      line-height: 1.12;
-    }
-
-    .welcome p {
-      max-width: 620px;
-      color: var(--cinza);
-      font-size: 14px;
-      line-height: 1.7;
+      padding: 18px 24px 40px;
     }
 
     /* BANNER */
 
     .banner {
       position: relative;
+      width: 100%;
+      min-height: 160px;
       display: flex;
       align-items: center;
-      min-height: 175px;
-      margin-bottom: 42px;
-      padding: 30px 36px;
       overflow: hidden;
-      border-radius: 12px;
-      background: #262626
-        url("banner-dauns.webp") center / cover no-repeat;
-      color: white;
-    }
-
-    .banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.82),
-        rgba(0, 0, 0, 0.16)
-      );
+      border: 1px solid #292929;
+      border-radius: 8px;
+      background-color: #111;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(8, 8, 8, 0.97) 0%,
+          rgba(8, 8, 8, 0.85) 55%,
+          rgba(8, 8, 8, 0.35) 100%
+        ),
+        url("banner-dauns.webp");
+      background-size: cover;
+      background-position: center;
     }
 
     .banner-content {
       position: relative;
       z-index: 1;
-      max-width: 620px;
+      padding: 24px 28px;
     }
 
-    .banner h2 {
-      margin-bottom: 10px;
-      font-size: clamp(22px, 3vw, 29px);
-      letter-spacing: -0.5px;
-      line-height: 1.2;
+    .banner h1 {
+      margin: 0 0 9px;
+      font-size: clamp(21px, 3vw, 32px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .banner p {
-      max-width: 450px;
-      color: rgba(255, 255, 255, 0.86);
-      font-size: 13px;
+      max-width: 570px;
+      margin: 0;
+      color: #c2c2c2;
+      font-size: 14px;
       line-height: 1.6;
     }
 
-    /* TÍTULO DA SEÇÃO */
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .section-heading h2 {
-      font-size: 20px;
-      letter-spacing: -0.4px;
-    }
-
-    .section-heading span {
-      color: var(--cinza);
-      font-size: 12px;
-    }
-
-    /* CARDS */
+    /* CARDS: QUATRO LADO A LADO */
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      align-items: stretch;
     }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 570px;
-      padding: 20px;
-      border: 1px solid var(--borda);
-      border-radius: 11px;
-      background: var(--branco);
-      color: inherit;
-      text-decoration: none;
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s,
-        border-color 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #d2d2d2;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-    }
-
-    /* BOX GRANDE DO ÍCONE */
 
     .icon-box {
+      width: 100%;
+      min-width: 0;
+      padding: 7px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 275px;
-      height: 450px;
-      max-width: 100%;
-      margin: 0 auto 25px;
-      flex-shrink: 0;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
       overflow: hidden;
-      border-radius: 12px;
-      background: #f5f5f5;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+      text-align: center;
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
     }
 
-    /* ÍCONE 250 × 250 PX */
+    .icon-box:hover {
+      border-color: #555;
+      background: #191919;
+      transform: translateY(-3px);
+    }
+
+    /* IMAGEM MAIOR, PREENCHENDO O CARD */
+
+    .icon-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #202020;
+    }
 
     .card-icon {
       display: block;
-      width: 250px;
-      height: 250px;
-      max-width: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
-      line-height: 1.35;
+    /* TEXTO DOS CARDS */
+
+    .card-title {
+      margin: 10px 0 5px;
+      font-size: 13px;
+      line-height: 1.3;
+      font-weight: 600;
     }
 
-    .card p {
-      margin-bottom: 22px;
-      color: var(--cinza);
-      font-size: 12px;
-      line-height: 1.65;
-    }
-
-    .card-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid var(--borda);
+    .card-description {
+      margin: 0 0 12px;
+      color: var(--muted);
       font-size: 11px;
-      font-weight: 700;
+      line-height: 1.45;
     }
 
-    .arrow {
-      font-size: 18px;
-      transition: transform 0.2s;
+    .card-button {
+      width: 100%;
+      margin-top: auto;
+      padding: 10px 6px;
+      border: 1px solid #383838;
+      border-radius: 5px;
+      background: #242424;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
 
-    .card:hover .arrow {
-      transform: translateX(4px);
+    .card-button:hover {
+      background: #383838;
     }
 
     /* RODAPÉ */
 
     footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 22px 5%;
-      border-top: 1px solid var(--borda);
-      background: white;
-      color: var(--cinza);
+      padding: 16px 20px 22px;
+      border-top: 1px solid var(--border);
+      color: #777;
       font-size: 11px;
+      text-align: center;
     }
 
-    footer strong {
-      color: var(--preto);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 18px;
-    }
-
-    .social-links a {
-      color: var(--cinza);
+    footer a {
+      color: #aaa;
       text-decoration: none;
     }
 
-    .social-links a:hover {
-      color: var(--preto);
+    footer a:hover {
+      color: white;
     }
 
     /* TABLETS */
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       main {
-        padding-top: 38px;
+        padding: 16px 18px 32px;
       }
 
       .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
-      .card {
-        min-height: auto;
-      }
-
-      .icon-box {
-        width: 275px;
-        height: 450px;
+      .banner {
+        min-height: 150px;
       }
     }
 
     /* CELULARES */
 
     @media (max-width: 480px) {
-      .topbar {
-        padding: 16px 5%;
+      .header {
+        height: 64px;
+        padding: 0 12px;
       }
 
       .logo {
-        width: 85px;
+        width: 95px;
       }
 
-      .brand-divider {
-        display: none;
-      }
-
-      .brand-name {
-        font-size: 11px;
-      }
-
-      .brand-subtitle {
-        font-size: 10px;
-      }
-
-      .top-actions {
-        gap: 6px;
-      }
-
-      .button {
-        min-height: 36px;
-        padding: 0 10px;
+      .header-button {
+        padding: 8px 10px;
         font-size: 11px;
       }
 
       main {
-        width: 90%;
+        padding: 12px 10px 26px;
       }
 
       .banner {
-        min-height: 190px;
-        padding: 25px;
-        margin-bottom: 34px;
+        min-height: 140px;
       }
 
-      .banner h2 {
-        font-size: 24px;
+      .banner-content {
+        padding: 18px 14px;
       }
 
-      .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 7px;
+      .banner h1 {
+        font-size: 20px;
+        letter-spacing: 0.2px;
       }
 
-      .card {
-        padding: 16px;
+      .banner p {
+        font-size: 12px;
+      }
+
+      .cards {
+        gap: 9px;
+        margin-top: 12px;
       }
 
       .icon-box {
-        width: 100%;
-        max-width: 275px;
-        height: 450px;
+        padding: 5px;
       }
 
-      .card-icon {
-        width: 250px;
-        height: 250px;
+      .card-title {
+        font-size: 12px;
       }
 
-      footer {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 350px) {
-      .brand-subtitle {
-        display: none;
+      .card-description {
+        font-size: 10px;
       }
 
-      .button {
-        padding: 0 8px;
+      .card-button {
+        padding: 9px 4px;
         font-size: 10px;
       }
     }
@@ -445,49 +312,36 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img
-        class="logo"
-        src="Dauns.webp"
-        alt="Dauns"
-        onerror="this.style.display='none'"
+
+  <header class="header">
+    <img
+      src="Dauns.webp"
+      alt="Dauns"
+      class="logo"
+    >
+
+    <div class="header-actions">
+      <button
+        class="header-button"
+        onclick="salvarProjeto()"
       >
-
-      <div class="brand-divider"></div>
-
-      <div>
-        <div class="brand-name">Menu Studio</div>
-        <div class="brand-subtitle">Painel de produção</div>
-      </div>
-    </div>
-
-    <div class="top-actions">
-      <button class="button" id="saveButton" type="button">
         Salvar
       </button>
 
-      <button class="button button-dark" id="logoutButton" type="button">
-        Sair da conta
+      <button
+        class="header-button"
+        onclick="sair()"
+      >
+        Sair
       </button>
     </div>
   </header>
 
   <main>
-    <section class="welcome">
-      <div class="eyebrow">Área de trabalho</div>
 
-      <h1>O que vamos produzir hoje?</h1>
-
-      <p>
-        Escolha uma categoria para começar. Acesse as ferramentas
-        de produção dos cardápios e materiais impressos da Dauns.
-      </p>
-    </section>
-
-    <section class="banner" aria-label="Destaque Dauns Menu Studio">
+    <section class="banner">
       <div class="banner-content">
-        <h2>SMART DESIGN. AUTOMATED PRODUCTION.</h2>
+        <h1>SMART DESIGN. AUTOMATED PRODUCTION.</h1>
 
         <p>
           AI tools, Photoshop scripts and automation.
@@ -496,146 +350,150 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-heading">
-        <h2>Produção de materiais</h2>
-        <span>Selecione uma opção para continuar</span>
-      </div>
+    <section class="cards">
 
-      <div class="cards">
+      <!-- CARD 1 -->
 
-        <!-- CARD 1 -->
-        <a class="card" href="DaunsPadrao.html">
-          <div class="icon-box">
-            <img
-              class="card-icon"
-              src="icon01.webp"
-              alt="Ícone do Cardápio Padrão"
-            >
-          </div>
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon01.webp"
+            alt="Dauns Padrão"
+            class="card-icon"
+          >
+        </div>
 
-          <h3>Cardápio Padrão</h3>
+        <h2 class="card-title">Dauns Padrão</h2>
 
-          <p>
-            Acesse a área de produção do cardápio padrão da Dauns.
-          </p>
+        <p class="card-description">
+          Produção completa de cardápios.
+        </p>
 
-          <div class="card-link">
-            <span>Acessar ferramenta</span>
-            <span class="arrow">→</span>
-          </div>
-        </a>
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsPadrao.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
 
-        <!-- CARD 2 -->
-        <a class="card" href="DaunsLojista.html">
-          <div class="icon-box">
-            <img
-              class="card-icon"
-              src="icon02.webp"
-              alt="Ícone do Cardápio Lojista"
-            >
-          </div>
+      <!-- CARD 2 -->
 
-          <h3>Cardápio Lojista</h3>
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon02.webp"
+            alt="Dauns Lojista"
+            class="card-icon"
+          >
+        </div>
 
-          <p>
-            Acesse a área de produção dos cardápios para lojistas.
-          </p>
+        <h2 class="card-title">Dauns Lojista</h2>
 
-          <div class="card-link">
-            <span>Acessar ferramenta</span>
-            <span class="arrow">→</span>
-          </div>
-        </a>
+        <p class="card-description">
+          Materiais para lojistas.
+        </p>
 
-        <!-- CARD 3 -->
-        <a class="card" href="DaunsSimplificado.html">
-          <div class="icon-box">
-            <img
-              class="card-icon"
-              src="icon03.webp"
-              alt="Ícone do Cardápio Simplificado"
-            >
-          </div>
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsLojista.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
 
-          <h3>Cardápio Simplificado</h3>
+      <!-- CARD 3 -->
 
-          <p>
-            Acesse a área de produção de cardápios simplificados.
-          </p>
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon03.webp"
+            alt="Dauns Simplificado"
+            class="card-icon"
+          >
+        </div>
 
-          <div class="card-link">
-            <span>Acessar ferramenta</span>
-            <span class="arrow">→</span>
-          </div>
-        </a>
+        <h2 class="card-title">Dauns Simplificado</h2>
 
-        <!-- CARD 4 -->
-        <a class="card" href="DaunsImpressos.html">
-          <div class="icon-box">
-            <img
-              class="card-icon"
-              src="icon04.webp"
-              alt="Ícone de Impressos"
-            >
-          </div>
+        <p class="card-description">
+          Um fluxo de produção mais simples.
+        </p>
 
-          <h3>Impressos</h3>
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsSimplificado.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
 
-          <p>
-            Acesse a área de produção de materiais impressos.
-          </p>
+      <!-- CARD 4 -->
 
-          <div class="card-link">
-            <span>Acessar ferramenta</span>
-            <span class="arrow">→</span>
-          </div>
-        </a>
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon04.webp"
+            alt="Dauns Impressos"
+            class="card-icon"
+          >
+        </div>
 
-      </div>
+        <h2 class="card-title">Dauns Impressos</h2>
+
+        <p class="card-description">
+          Produção de materiais impressos.
+        </p>
+
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsImpressos.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
+
     </section>
+
   </main>
 
   <footer>
-    <div>
-      Desenvolvido por <strong>Rubens Brandão</strong>
-      <span> · Dauns Menu Studio</span>
-    </div>
+    <a
+      href="https://www.instagram.com/dauns.oficial/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram Dauns
+    </a>
 
-    <nav class="social-links" aria-label="Redes sociais">
-      <a
-        href="https://www.instagram.com/dauns.oficial/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Instagram</a>
+    &nbsp; · &nbsp;
 
-      <a
-        href="https://www.youtube.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >YouTube</a>
-    </nav>
+    <span>Dauns Menu Studio</span>
   </footer>
 
   <script>
-    // Proteção básica de navegação.
-    // Não substitui autenticação real em um servidor.
-    if (sessionStorage.getItem("daunsLogado") !== "sim") {
+    // Verifica se o usuário passou pela tela de login.
+    // Esta é uma proteção básica de navegação, não uma
+    // autenticação segura no servidor.
+
+    if (sessionStorage.getItem("daunsLogado") !== "true") {
       window.location.replace("index.html");
     }
 
-    document
-      .getElementById("logoutButton")
-      .addEventListener("click", function () {
-        sessionStorage.removeItem("daunsLogado");
-        window.location.replace("index.html");
-      });
+    function abrirPagina(pagina) {
+      window.location.href = pagina;
+    }
 
-    document
-      .getElementById("saveButton")
-      .addEventListener("click", function () {
-        alert("Esta página não possui alterações para salvar.");
-      });
+    function salvarProjeto() {
+      alert(
+        "A função de salvar projetos ainda não está configurada."
+      );
+    }
+
+    function sair() {
+      sessionStorage.removeItem("daunsLogado");
+      window.location.href = "index.html";
+    }
   </script>
+
 </body>
 </html>
