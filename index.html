@@ -1,384 +1,498 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dauns Menu Studio | Login</title>
+  <title>Dauns Menu Studio</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     :root {
-      --preto: #171717;
-      --cinza: #777;
-      --borda: #e7e7e7;
-      --fundo: #f5f5f5;
-      --destaque: #c9202d;
+      --background: #090909;
+      --surface: #141414;
+      --border: #292929;
+      --text: #ffffff;
+      --muted: #a5a5a5;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: var(--fundo);
-      color: var(--preto);
+      background: var(--background);
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    .login-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: min(100%, 1000px);
-      min-height: 590px;
-      overflow: hidden;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.10);
-    }
+    /* CABEÇALHO */
 
-    .login-panel {
+    .header {
+      width: 100%;
+      height: 72px;
+      padding: 0 28px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 56px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: #0c0c0c;
     }
 
     .logo {
       display: block;
-      width: 170px;
-      max-width: 100%;
-      height: auto;
+      width: 120px;
+      max-height: 48px;
       object-fit: contain;
-      margin-bottom: 42px;
     }
 
-    .eyebrow {
-      color: var(--cinza);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: clamp(28px, 3vw, 36px);
-      line-height: 1.15;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
-    }
-
-    .subtitle {
-      color: var(--cinza);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-
-    .field {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-      min-height: 48px;
-      padding: 0 14px;
-      border: 1px solid var(--borda);
-      border-radius: 8px;
-      outline: none;
-      font-size: 14px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    input:focus {
-      border-color: var(--preto);
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
-    }
-
-    .password-wrap {
-      position: relative;
-    }
-
-    .password-wrap input {
-      padding-right: 76px;
-    }
-
-    .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      border: 0;
-      background: transparent;
-      color: #555;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .login-button {
-      width: 100%;
-      min-height: 49px;
-      border: 0;
-      border-radius: 8px;
-      background: var(--preto);
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .login-button:hover {
-      opacity: 0.88;
-    }
-
-    .login-button:active {
-      transform: scale(0.99);
-    }
-
-    .error-message {
-      display: none;
-      margin-top: 14px;
-      color: #c9202d;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .login-footer {
-      margin-top: 38px;
-      color: #999;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .image-panel {
-      position: relative;
+    .header-actions {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      min-height: 590px;
-      padding: 48px;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-button {
+      padding: 9px 16px;
+      border: 1px solid #383838;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .header-button:hover {
+      background: #252525;
+    }
+
+    /* ÁREA PRINCIPAL */
+
+    main {
+      width: 100%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 18px 24px 40px;
+    }
+
+    /* BANNER */
+
+    .banner {
+      position: relative;
+      width: 100%;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
       overflow: hidden;
-      background: #222 url("DaunsBG.webp") center center / cover no-repeat;
-      color: #fff;
+      border: 1px solid #292929;
+      border-radius: 8px;
+      background-color: #111;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(8, 8, 8, 0.97) 0%,
+          rgba(8, 8, 8, 0.85) 55%,
+          rgba(8, 8, 8, 0.35) 100%
+        ),
+        url("banner-dauns.webp");
+      background-size: cover;
+      background-position: center;
     }
 
-    .image-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.02) 10%,
-        rgba(0, 0, 0, 0.78) 100%
-      );
-    }
-
-    .image-content {
+    .banner-content {
       position: relative;
       z-index: 1;
+      padding: 24px 28px;
     }
 
-    .image-tag {
-      display: inline-block;
-      padding: 8px 12px;
-      margin-bottom: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      border-radius: 30px;
-      font-size: 10px;
+    .banner h1 {
+      margin: 0 0 9px;
+      font-size: clamp(21px, 3vw, 32px);
+      line-height: 1.15;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .image-panel h2 {
-      max-width: 360px;
-      margin-bottom: 14px;
-      font-size: clamp(30px, 3vw, 43px);
-      line-height: 1.08;
-      letter-spacing: -1px;
-    }
-
-    .image-panel p {
-      max-width: 340px;
-      color: rgba(255, 255, 255, 0.82);
+    .banner p {
+      max-width: 570px;
+      margin: 0;
+      color: #c2c2c2;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    @media (max-width: 760px) {
-      body {
-        padding: 14px;
+    /* QUATRO CARDS LADO A LADO */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .icon-box {
+      width: 100%;
+      min-width: 0;
+      padding: 7px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      background: var(--surface);
+      text-align: center;
+      transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .icon-box:hover {
+      border-color: #555;
+      background: #191919;
+      transform: translateY(-3px);
+    }
+
+    /* IMAGENS */
+
+    .icon-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #202020;
+    }
+
+    .card-icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* TEXTOS */
+
+    .card-title {
+      margin: 10px 0 5px;
+      font-size: 13px;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .card-description {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .card-button {
+      width: 100%;
+      margin-top: auto;
+      padding: 10px 6px;
+      border: 1px solid #383838;
+      border-radius: 5px;
+      background: #242424;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .card-button:hover {
+      background: #383838;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      padding: 16px 20px 22px;
+      border-top: 1px solid var(--border);
+      color: #777;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    /* TABLETS */
+
+    @media (max-width: 900px) {
+      main {
+        padding: 16px 18px 32px;
       }
 
-      .login-container {
-        grid-template-columns: 1fr;
-        max-width: 480px;
-        min-height: auto;
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
-      .login-panel {
-        padding: 34px 26px;
+      .banner {
+        min-height: 150px;
+      }
+    }
+
+    /* CELULARES */
+
+    @media (max-width: 480px) {
+      .header {
+        height: 64px;
+        padding: 0 12px;
       }
 
       .logo {
-        width: 145px;
-        margin-bottom: 32px;
+        width: 95px;
       }
 
-      .image-panel {
-        min-height: 240px;
-        padding: 28px;
+      .header-button {
+        padding: 8px 10px;
+        font-size: 11px;
       }
 
-      .image-panel h2 {
-        font-size: 29px;
+      main {
+        padding: 12px 10px 26px;
       }
 
-      .login-footer {
-        margin-top: 28px;
+      .banner {
+        min-height: 140px;
+      }
+
+      .banner-content {
+        padding: 18px 14px;
+      }
+
+      .banner h1 {
+        font-size: 20px;
+        letter-spacing: 0.2px;
+      }
+
+      .banner p {
+        font-size: 12px;
+      }
+
+      .cards {
+        gap: 9px;
+        margin-top: 12px;
+      }
+
+      .icon-box {
+        padding: 5px;
+      }
+
+      .card-title {
+        font-size: 12px;
+      }
+
+      .card-description {
+        font-size: 10px;
+      }
+
+      .card-button {
+        padding: 9px 4px;
+        font-size: 10px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="login-container">
-    <section class="login-panel">
-      <img
-        class="logo"
-        src="Dauns.webp"
-        alt="Dauns"
-        onerror="this.style.display='none'"
+
+  <header class="header">
+    <img
+      src="Dauns.webp"
+      alt="Dauns"
+      class="logo"
+    >
+
+    <div class="header-actions">
+      <button
+        class="header-button"
+        onclick="salvarProjeto()"
       >
+        Salvar
+      </button>
 
-      <div class="eyebrow">Dauns Menu Studio</div>
-      <h1>Bem-vindo de volta.</h1>
-      <p class="subtitle">
-        Entre na sua conta para acessar as ferramentas de produção.
-      </p>
+      <button
+        class="header-button"
+        onclick="sair()"
+      >
+        Sair
+      </button>
+    </div>
+  </header>
 
-      <form id="loginForm">
-        <div class="field">
-          <label for="username">Usuário</label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            placeholder="Digite seu usuário"
-            autocomplete="username"
-            required
-          >
-        </div>
+  <main>
 
-        <div class="field">
-          <label for="password">Senha</label>
-          <div class="password-wrap">
-            <input
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Digite sua senha"
-              autocomplete="current-password"
-              required
-            >
-            <button
-              class="toggle-password"
-              type="button"
-              id="togglePassword"
-            >MOSTRAR</button>
-          </div>
-        </div>
+    <section class="banner">
+      <div class="banner-content">
+        <h1>SMART DESIGN. AUTOMATED PRODUCTION.</h1>
 
-        <button class="login-button" type="submit">
-          Entrar na plataforma
-        </button>
-
-        <p class="error-message" id="errorMessage" role="alert">
-          Usuário ou senha incorretos. Confira os dados e tente novamente.
+        <p>
+          AI tools, Photoshop scripts and automation.
+          A smarter workflow, all online.
         </p>
-      </form>
-
-      <div class="login-footer">
-        Dauns Menu Studio<br>
-        Ambiente de produção
       </div>
     </section>
 
-    <aside class="image-panel">
-      <div class="image-content">
-        <div class="image-tag">Dauns • Menu Studio</div>
-        <h2>Seu cardápio.<br>Sua identidade.</h2>
-        <p>
-          Organize os produtos e simplifique a produção dos seus materiais.
+    <section class="cards">
+
+      <!-- CARD 1 -->
+
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon01.webp"
+            alt="Dauns Padrão"
+            class="card-icon"
+          >
+        </div>
+
+        <h2 class="card-title">Dauns Padrão</h2>
+
+        <p class="card-description">
+          Produção completa de cardápios.
         </p>
-      </div>
-    </aside>
+
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsPadrao.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
+
+      <!-- CARD 2 -->
+
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon02.webp"
+            alt="Dauns Lojista"
+            class="card-icon"
+          >
+        </div>
+
+        <h2 class="card-title">Dauns Lojista</h2>
+
+        <p class="card-description">
+          Materiais para lojistas.
+        </p>
+
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsLojista.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
+
+      <!-- CARD 3 -->
+
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon03.webp"
+            alt="Dauns Simplificado"
+            class="card-icon"
+          >
+        </div>
+
+        <h2 class="card-title">Dauns Simplificado</h2>
+
+        <p class="card-description">
+          Um fluxo de produção mais simples.
+        </p>
+
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsSimplificado.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
+
+      <!-- CARD 4 -->
+
+      <article class="icon-box">
+        <div class="icon-image-wrap">
+          <img
+            src="icon04.webp"
+            alt="Dauns Impressos"
+            class="card-icon"
+          >
+        </div>
+
+        <h2 class="card-title">Dauns Impressos</h2>
+
+        <p class="card-description">
+          Produção de materiais impressos.
+        </p>
+
+        <button
+          class="card-button"
+          onclick="abrirPagina('DaunsImpressos.html')"
+        >
+          ACESSAR
+        </button>
+      </article>
+
+    </section>
   </main>
 
-  <script>
-    // Credenciais para demonstração.
-    // Atenção: em um site estático, elas ficam visíveis no código-fonte.
-    const USUARIO = "daunsdigital";
-    const SENHA = "dauns001@";
+  <footer>
+    <a
+      href="https://www.instagram.com/dauns.oficial/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram Dauns
+    </a>
 
-    // Se já houver uma sessão nesta aba, abre a página inicial.
-    if (sessionStorage.getItem("daunsLogado") === "sim") {
-      window.location.replace("home.html");
+    &nbsp; · &nbsp;
+
+    <span>Dauns Menu Studio</span>
+  </footer>
+
+  <script>
+    // IMPORTANTE:
+    // O index.html grava "sim" na sessão.
+    // A Home precisa verificar exatamente o mesmo valor.
+
+    if (sessionStorage.getItem("daunsLogado") !== "sim") {
+      window.location.replace("index.html");
     }
 
-    const form = document.getElementById("loginForm");
-    const errorMessage = document.getElementById("errorMessage");
-    const passwordInput = document.getElementById("password");
-    const togglePassword = document.getElementById("togglePassword");
+    function abrirPagina(pagina) {
+      window.location.href = pagina;
+    }
 
-    togglePassword.addEventListener("click", function () {
-      const isPassword = passwordInput.type === "password";
+    function salvarProjeto() {
+      alert(
+        "A função de salvar projetos ainda não está configurada."
+      );
+    }
 
-      passwordInput.type = isPassword ? "text" : "password";
-      togglePassword.textContent = isPassword ? "OCULTAR" : "MOSTRAR";
-    });
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const usuarioDigitado = document
-        .getElementById("username")
-        .value.trim();
-
-      const senhaDigitada = passwordInput.value;
-
-      if (
-        usuarioDigitado === USUARIO &&
-        senhaDigitada === SENHA
-      ) {
-        sessionStorage.setItem("daunsLogado", "sim");
-        window.location.href = "home.html";
-      } else {
-        errorMessage.style.display = "block";
-        passwordInput.value = "";
-        passwordInput.focus();
-      }
-    });
-
-    form.addEventListener("input", function () {
-      errorMessage.style.display = "none";
-    });
+    function sair() {
+      sessionStorage.removeItem("daunsLogado");
+      window.location.href = "index.html";
+    }
   </script>
+
 </body>
 </html>
