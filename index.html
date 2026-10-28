@@ -339,7 +339,7 @@
 
     // Se já houver uma sessão nesta aba, abre a página inicial.
     if (sessionStorage.getItem("daunsLogado") === "sim") {
-      window.location.replace("Home.html");
+      window.location.replace("home.html");
     }
 
     const form = document.getElementById("loginForm");
@@ -368,7 +368,7 @@
         senhaDigitada === SENHA
       ) {
         sessionStorage.setItem("daunsLogado", "sim");
-        window.location.href = "Home.html";
+        window.location.href = "home.html";
       } else {
         errorMessage.style.display = "block";
         passwordInput.value = "";
