@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ca1c1e">
+<title>Home | Dauns Menu Studio</title>
+
+<style>
+:root {
+  --red: #ca1c1e;
+  --red-dark: #a91619;
+  --ink: #242326;
+  --muted: #77747a;
+  --line: #e9e5e1;
+  --bg: #f7f5f2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, Arial, sans-serif;
+}
+
+button, a { font: inherit; }
+
+.page {
+  min-height: 100vh;
+  max-width: 1680px;
+  margin: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CABEÇALHO */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px clamp(22px, 4vw, 54px);
+  background: #fff;
+  border-radius: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.brand img {
+  width: 58px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 23px;
+  font-weight: 850;
+  letter-spacing: -1.5px;
+}
+
+.brand-sub {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.action-save {
+  background: #f6f4f2;
+  color: var(--ink);
+}
+
+.action-logout {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+.action-logout:hover {
+  background: var(--red-dark);
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px clamp(10px, 3vw, 42px);
+}
+
+.intro {
+  text-align: center;
+  margin: 0 auto 30px;
+  max-width: 700px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  width: 18px;
+  height: 2px;
+  background: var(--red);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 3.4vw, 47px);
+  line-height: 1.08;
+  letter-spacing: -2.5px;
+}
+
+h1 span { color: var(--red); }
+
+.intro p {
+  max-width: 540px;
+  margin: 15px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* BANNER — SUBSTITUA PELA SUA ARTE */
+
+.banner {
+  display: block;
+  width: 100%;
+  max-width: 1320px;
+  height: 100px;
+  margin: 0 auto 24px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #e5e0da;
+  position: relative;
+  text-decoration: none;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-placeholder {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #77747a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.banner-placeholder svg {
+  width: 22px;
+  height: 22px;
+  color: var(--red);
+}
+
+/* QUATRO CARDS */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  min-height: 270px;
+  padding: 23px 21px 19px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: left;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(31,26,24,.025);
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(202,28,30,.45);
+  box-shadow: 0 14px 30px rgba(31,26,24,.07);
+}
+
+.icon-wrap {
+  width: 62px;
+  height: 62px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f9eeed;
+}
+
+.icon-wrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 9px;
+  object-fit: contain;
+}
+
+.card-number {
+  position: absolute;
+  top: 27px;
+  right: 20px;
+  color: #b7b2b0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.project-card h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -.5px;
+}
+
+.project-card p {
+  flex: 1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.card-link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #f0edeb;
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.card-link svg {
+  width: 17px;
+  height: 17px;
+  transition: transform .2s;
+}
+
+.project-card:hover .card-link svg {
+  transform: translateX(4px);
+}
+
+/* RODAPÉ */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 19px clamp(22px, 4vw, 54px);
+  border-top: 1px solid rgba(36,35,38,.12);
+  color: #969197;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.creator { text-align: right; }
+
+.creator strong {
+  display: block;
+  color: #555158;
+  font-size: 11px;
+}
+
+.creator-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.creator-links a {
+  color: #77747a;
+  text-decoration: none;
+}
+
+.creator-links a:hover { color: var(--red); }
+
+/* RESPONSIVO */
+
+@media (max-width: 1050px) {
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 780px;
+  }
+
+  .project-card { min-height: 250px; }
+}
+
+@media (max-width: 560px) {
+  .page { padding: 0; }
+
+  .topbar {
+    padding: 17px;
+    border-radius: 0;
+  }
+
+  .brand { gap: 8px; }
+  .brand img { width: 43px; height: 42px; }
+  .brand-name { font-size: 20px; }
+
+  .actions { gap: 6px; }
+
+  .action {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  main { padding: 38px 14px 42px; }
+
+  .intro { margin-bottom: 24px; }
+
+  h1 { letter-spacing: -1.7px; }
+
+  .intro p { font-size: 13px; }
+
+  .banner {
+    height: 75px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+  }
+
+  .banner-placeholder {
+    font-size: 9px;
+    letter-spacing: 1px;
+    gap: 8px;
+  }
+
+  .projects { gap: 10px; }
+
+  .project-card {
+    min-height: 250px;
+    padding: 16px 14px 14px;
+    border-radius: 13px;
+  }
+
+  .icon-wrap {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 20px;
+    border-radius: 11px;
+  }
+
+  .card-number {
+    top: 20px;
+    right: 13px;
+    font-size: 9px;
+  }
+
+  .project-card h2 { font-size: 15px; }
+
+  .project-card p {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .card-link {
+    margin-top: 16px;
+    padding-top: 12px;
+    font-size: 10px;
+  }
+
+  footer {
+    padding: 18px 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .creator { text-align: left; }
+  .creator-links { justify-content: flex-start; }
+}
+
+@media (max-width: 360px) {
+  .brand img { display: none; }
+  .action { padding: 0 8px; }
+  .project-card { padding: 13px 11px; }
+  .project-card h2 { font-size: 14px; }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="Dauns.webp" alt="Dauns"
+           onerror="this.style.display='none'">
+      <div>
+        <div class="brand-name">DAUNS</div>
+        <div class="brand-sub">Menu Studio</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="action action-save" id="saveButton" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 4h12l3 3v13H4V4h1Zm3 0v6h8V4M8 20v-7h8v7"
+                stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+        </svg>
+        Salvar
+      </button>
+
+      <button class="action action-logout" id="logoutButton" type="button">
+        Sair
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M10 5H5v14h5M14 8l4 4-4 4M8 12h10"
+                stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="eyebrow">Seu espaço de criação</div>
+      <h1>O que vamos <span>produzir</span> hoje?</h1>
+      <p>
+        Escolha um formato para começar. Produtos, preços e imagens
+        organizados para agilizar a produção dos seus cardápios.
+      </p>
+    </section>
+
+    <!-- BANNER: coloque sua arte como banner-dauns.webp na mesma pasta -->
+    <div class="banner">
+      <img src="banner-dauns.webp" alt="Campanha Dauns"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="banner-placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="16" rx="2"
+                stroke="currentColor" stroke-width="1.7"/>
+          <circle cx="8.5" cy="9" r="1.5"
+                  stroke="currentColor" stroke-width="1.7"/>
+          <path d="m4 17 5-5 3 3 3-4 5 6"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Espaço reservado para sua arte promocional
+      </div>
+    </div>
+
+    <section class="projects" aria-label="Escolha o tipo de projeto">
+
+      <a class="project-card" href="DaunsPadrao.html">
+        <div class="icon-wrap">
+          <img src="icon01.webp" alt="Ícone Cardápio Padrão">
+        </div>
+        <span class="card-number">01 / 04</span>
+        <h2>Cardápio Padrão</h2>
+        <p>
+          Cardápio vertical completo, com a linha de produtos Dauns
+          organizada em um layout claro e completo.
+        </p>
+        <span class="card-link">
+          Começar projeto
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="project-card" href="DaunsLojista.html">
+        <div class="icon-wrap">
+          <img src="icon02.webp" alt="Ícone Cardápio Lojista">
+        </div>
+        <span class="card-number">02 / 04</span>
+        <h2>Cardápio Lojista</h2>
+        <p>
+          Formato horizontal e preços competitivos para lojistas,
+          profissionais e estudantes.
+        </p>
+        <span class="card-link">
+          Começar projeto
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="project-card" href="DaunsSimplificado.html">
+        <div class="icon-wrap">
+          <img src="icon03.webp" alt="Ícone Cardápio Simplificado">
+        </div>
+        <span class="card-number">03 / 04</span>
+        <h2>Cardápio Simplificado</h2>
+        <p>
+          Seleção de pratos econômicos para oferecer refeições
+          acessíveis em lojas e empresas.
+        </p>
+        <span class="card-link">
+          Começar projeto
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="project-card" href="DaunsImpressos.html">
+        <div class="icon-wrap">
+          <img src="icon04.webp" alt="Ícone Impressos">
+        </div>
+        <span class="card-number">04 / 04</span>
+        <h2>Impressos</h2>
+        <p>
+          Folhetos promocionais de 1 a 6 produtos para destacar
+          ofertas, lançamentos e novidades.
+        </p>
+        <span class="card-link">
+          Começar projeto
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      © <span id="year"></span> Dauns Menu Studio<br>
+      Todos os direitos reservados.
+    </div>
+
+    <div class="creator">
+      <span>Desenvolvido por</span>
+      <strong>Rubens Brandão</strong>
+      <div class="creator-links">
+        <a href="https://www.instagram.com/rubensbrandao/"
+           target="_blank" rel="noopener noreferrer">@rubensbrandao</a>
+        <a href="https://www.youtube.com/@rubensrmb"
+           target="_blank" rel="noopener noreferrer">@rubensrmb</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/*
+  Estes botões ainda são demonstrativos.
+  O botão Salvar será conectado ao sistema de projetos.
+  O botão Sair será conectado quando a autenticação real estiver pronta.
+*/
+document.getElementById("saveButton").addEventListener("click", function () {
+  alert("O recurso Salvar será ativado quando o fluxo de projetos estiver conectado.");
+});
+
+document.getElementById("logoutButton").addEventListener("click", function () {
+  window.location.href = "index.html";
+});
+</script>
+</body>
+</html>
