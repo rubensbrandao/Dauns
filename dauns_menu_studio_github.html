@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ca1c1e">
+  <title>Dauns Menu Studio</title>
+  <style>
+    :root {
+      --red: #ca1c1e;
+      --red-dark: #a91619;
+      --paper: #e5e0da;
+      --ink: #242326;
+      --muted: #77747a;
+      --line: rgba(36,35,38,.13);
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f7f5f2;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(380px, 0.88fr) minmax(480px, 1.12fr);
+      padding: 14px;
+      gap: 14px;
+    }
+    .login-panel {
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 28px);
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.04);
+      border-radius: 22px;
+      padding: clamp(28px, 4vw, 58px);
+      position: relative;
+      overflow: hidden;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-height: 54px;
+    }
+    .brand img {
+      display: block;
+      width: 58px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .brand-copy { display: flex; flex-direction: column; gap: 3px; }
+    .brand-name {
+      font-weight: 850;
+      letter-spacing: -.055em;
+      font-size: 23px;
+      line-height: 1;
+    }
+    .brand-sub {
+      font-size: 10px;
+      letter-spacing: .2em;
+      font-weight: 750;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .login-content {
+      width: 100%;
+      max-width: 390px;
+      margin: auto;
+      padding: 50px 0 56px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 20px;
+    }
+    .eyebrow:before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--red);
+    }
+    h1 {
+      font-size: clamp(34px, 3.2vw, 47px);
+      line-height: 1.04;
+      letter-spacing: -.06em;
+      margin: 0 0 14px;
+      font-weight: 800;
+    }
+    .intro {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 34px;
+      max-width: 330px;
+    }
+    form { display: grid; gap: 17px; }
+    .field { display: grid; gap: 8px; }
+    label {
+      font-size: 12px;
+      font-weight: 750;
+      color: #39373b;
+    }
+    .input-wrap { position: relative; }
+    input {
+      width: 100%;
+      min-height: 53px;
+      border: 1px solid #e3e0dd;
+      border-radius: 10px;
+      padding: 0 15px;
+      font: inherit;
+      font-size: 14px;
+      color: var(--ink);
+      background: #fbfaf9;
+      outline: none;
+      transition: border-color .18s, box-shadow .18s, background .18s;
+    }
+    input:focus {
+      border-color: var(--red);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(202,28,30,.09);
+    }
+    .password-input { padding-right: 70px; }
+    .show-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: #77747a;
+      font-size: 11px;
+      font-weight: 750;
+      cursor: pointer;
+      padding: 8px 3px;
+    }
+    .form-meta {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -3px;
+    }
+    a {
+      color: var(--red);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    a:hover { text-decoration: underline; }
+    .submit {
+      border: 0;
+      border-radius: 10px;
+      min-height: 54px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: var(--red);
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 7px;
+      transition: transform .18s, background .18s;
+    }
+    .submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .submit svg { width: 17px; height: 17px; }
+    .status {
+      display: none;
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .status.show { display: block; }
+    .status.info { color: #6c4c12; background: #fff4d8; }
+    .status.error { color: #9d171a; background: #fff0f0; }
+    .left-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      color: #969197;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+    .creator { text-align: right; }
+    .creator strong { display: block; color: #555158; font-size: 11px; }
+    .creator-links { display: flex; gap: 10px; justify-content: flex-end; margin-top: 5px; }
+    .creator-links a { color: #77747a; font-size: 10px; }
+    .hero {
+      min-height: calc(100vh - 28px);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #242326;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(28px, 4vw, 58px);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(14,13,14,.28) 0%, rgba(14,13,14,.25) 35%, rgba(14,13,14,.86) 100%),
+        url("DaunsBG.webp") center center / cover no-repeat,
+        #29272a;
+      transform: scale(1.01);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(125deg, rgba(202,28,30,.12), transparent 42%);
+      pointer-events: none;
+    }
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .hero-mark {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: rgba(255,255,255,.85);
+    }
+    .ai-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 13px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 100px;
+      background: rgba(20,19,20,.25);
+      backdrop-filter: blur(10px);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .ai-chip .spark { color: #ff7778; font-size: 15px; }
+    .hero-copy { max-width: 620px; padding: 75px 0 45px; }
+    .hero-kicker {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      color: #ffb8b9;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(42px, 5.5vw, 76px);
+      line-height: .99;
+      letter-spacing: -.07em;
+      font-weight: 850;
+      max-width: 660px;
+    }
+    .hero h2 span { color: #ff696b; }
+    .hero-copy p {
+      margin: 25px 0 0;
+      max-width: 430px;
+      color: rgba(255,255,255,.78);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,.24);
+      padding-top: 19px;
+      color: rgba(255,255,255,.67);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .hero-bottom strong { color: #fff; font-weight: 750; }
+    .hero-index { display: flex; align-items: center; gap: 9px; }
+    .hero-index:before { content: ""; width: 25px; height: 2px; background: var(--red); }
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; padding: 10px; gap: 10px; }
+      .login-panel { min-height: auto; padding: 28px clamp(22px, 6vw, 48px); }
+      .login-content { margin: 0 auto; padding: 55px 0 45px; }
+      .left-footer { margin-top: 0; }
+      .hero { min-height: 620px; padding: clamp(26px, 6vw, 45px); }
+      .hero-copy { padding: 80px 0; }
+      .hero h2 { font-size: clamp(43px, 10vw, 70px); }
+    }
+    @media (max-width: 480px) {
+      .shell { padding: 0; gap: 0; }
+      .login-panel, .hero { border-radius: 0; }
+      .login-panel { padding: 24px 22px; }
+      .brand img { width: 48px; height: 46px; }
+      .brand-name { font-size: 21px; }
+      .left-footer { align-items: flex-start; flex-direction: column; }
+      .creator { text-align: left; }
+      .creator-links { justify-content: flex-start; }
+      .hero { min-height: 570px; }
+      .hero-top { align-items: flex-start; flex-direction: column; }
+      .hero-copy { padding: 60px 0; }
+      .hero-bottom { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="login-panel" aria-label="Acesso ao Dauns Menu Studio">
+      <header class="brand">
+        <img src="Dauns.webp" alt="Dauns" onerror="this.style.display='none'">
+        <div class="brand-copy">
+          <div class="brand-name">DAUNS</div>
+          <div class="brand-sub">Menu Studio</div>
+        </div>
+      </header>
+
+      <div class="login-content">
+        <div class="eyebrow">Inteligência + Design</div>
+        <h1>Acesse sua<br>conta.</h1>
+        <p class="intro">Entre no seu espaço de produção e continue de onde parou.</p>
+
+        <form id="loginForm" autocomplete="on">
+          <div class="field">
+            <label for="username">Nome de usuário</label>
+            <input id="username" name="username" type="text" placeholder="Digite seu usuário" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <div class="input-wrap">
+              <input class="password-input" id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+              <button class="show-password" id="togglePassword" type="button" aria-label="Mostrar senha">Mostrar</button>
+            </div>
+          </div>
+          <div class="form-meta">
+            <a href="mailto:rubensbrandao@gmai.com?subject=Recupera%C3%A7%C3%A3o%20de%20acesso%20-%20Dauns%20Menu%20Studio">Esqueci minha senha</a>
+          </div>
+          <button class="submit" type="submit">
+            Entrar
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="status info show" id="status" role="status">Interface pronta. Para autenticar com segurança no GitHub Pages, conecte um serviço de login ou um backend.</p>
+        </form>
+      </div>
+
+      <footer class="left-footer">
+        <div>© <span id="year"></span> Dauns Menu Studio<br>Todos os direitos reservados.</div>
+        <div class="creator">
+          <span>Desenvolvido por</span>
+          <strong>Rubens Brandão</strong>
+          <div class="creator-links">
+            <a href="https://www.instagram.com/rubensbrandao/" target="_blank" rel="noopener noreferrer">@rubensbrandao</a>
+            <a href="https://www.youtube.com/@rubensrmb" target="_blank" rel="noopener noreferrer">@rubensrmb</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <section class="hero" aria-label="Apresentação do Dauns Menu Studio">
+      <div class="hero-top">
+        <div class="hero-mark">Dauns · Produção inteligente</div>
+        <div class="ai-chip"><span class="spark">✳</span> AI + PHOTOSHOP</div>
+      </div>
+
+      <div class="hero-copy">
+        <div class="hero-kicker">Uma nova forma de produzir</div>
+        <h2>Do cadastro<br>ao cardápio.<br><span>Sem perder tempo.</span></h2>
+        <p>Produtos organizados, preços sob controle e imagens prontas para entrar no layout. Uma nova forma de produzir cardápios com precisão e velocidade.</p>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-index"><strong>Organize.</strong>&nbsp; Automatize. Produza.</div>
+        <div>Mais agilidade em cada etapa.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const password = document.getElementById("password");
+    const toggle = document.getElementById("togglePassword");
+    toggle.addEventListener("click", () => {
+      const showing = password.type === "text";
+      password.type = showing ? "password" : "text";
+      toggle.textContent = showing ? "Mostrar" : "Ocultar";
+      toggle.setAttribute("aria-label", showing ? "Mostrar senha" : "Ocultar senha");
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const status = document.getElementById("status");
+      status.className = "status show info";
+      status.textContent = "O layout está pronto, mas o login ainda não está conectado. O GitHub Pages não executa PHP; conecte um serviço de autenticação ou um backend antes de usar credenciais reais.";
+    });
+  </script>
+</body>
+</html>
