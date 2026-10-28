@@ -4,7 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dauns | Login</title>
+  <title>Dauns Menu Studio</title>
+
+  <script>
+    // Proteção da página inicial.
+    if (sessionStorage.getItem("daunsLogado") !== "sim") {
+      window.location.replace("./index.html");
+    }
+  </script>
 
   <style>
     * {
@@ -13,124 +20,226 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: #111;
       color: #fff;
       font-family: Arial, sans-serif;
     }
 
-    .login {
-      width: 90%;
-      max-width: 380px;
-      padding: 40px;
-      background: #1b1b1b;
-      border: 1px solid #333;
-      border-radius: 12px;
+    header {
+      height: 85px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #292929;
     }
 
-    .login img {
-      display: block;
-      max-width: 180px;
-      max-height: 80px;
+    .logo {
+      width: 130px;
+      max-height: 60px;
       object-fit: contain;
-      margin: 0 auto 30px;
     }
 
-    h1 {
-      font-size: 20px;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 13px;
-      margin-bottom: 14px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    input {
-      background: #111;
-      color: white;
-      border: 1px solid #444;
+    .acoes {
+      display: flex;
+      gap: 10px;
     }
 
     button {
-      background: white;
-      color: #111;
-      border: 0;
+      padding: 11px 18px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
       cursor: pointer;
-      font-weight: bold;
     }
 
     button:hover {
-      background: #ddd;
+      background: #292929;
     }
 
-    #mensagem {
-      color: #ff7777;
-      font-size: 13px;
+    .banner {
+      min-height: 250px;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      min-height: 16px;
+      background:
+        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
+        url("./banner-dauns.webp") center/cover no-repeat;
+    }
+
+    .banner h1 {
+      margin: 0 0 15px;
+      font-size: clamp(23px, 4vw, 38px);
+      letter-spacing: 2px;
+    }
+
+    .banner p {
+      margin: 0;
+      max-width: 650px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .conteudo {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 45px 5%;
+    }
+
+    .conteudo h2 {
+      margin: 0 0 25px;
+      font-size: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      display: block;
+      overflow: hidden;
+      text-decoration: none;
+      color: white;
+      background: #1b1b1b;
+      border: 1px solid #303030;
+      border-radius: 8px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #777;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #222;
+    }
+
+    .card h3 {
+      padding: 18px 12px;
+      margin: 0;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    footer {
+      padding: 25px;
+      border-top: 1px solid #292929;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0 4%;
+      }
+
+      .logo {
+        width: 100px;
+      }
+
+      button {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
+      .conteudo {
+        padding: 30px 5%;
+      }
+
+      .grid {
+        gap: 12px;
+      }
+
+      .card h3 {
+        font-size: 13px;
+        padding: 14px 6px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="login">
-    <img src="./Dauns.webp" alt="Dauns">
+  <header>
+    <img class="logo" src="./Dauns.webp" alt="Dauns">
 
-    <h1>ACESSO RESTRITO</h1>
+    <div class="acoes">
+      <button id="salvar">Salvar</button>
+      <button id="sair">Sair</button>
+    </div>
+  </header>
 
-    <form id="loginForm">
-      <input
-        id="usuario"
-        type="text"
-        placeholder="Usuário"
-        autocomplete="username"
-        required
-      >
+  <section class="banner">
+    <h1>SMART DESIGN. AUTOMATED PRODUCTION.</h1>
+    <p>
+      AI tools, Photoshop scripts and automation.
+      A smarter workflow, all online.
+    </p>
+  </section>
 
-      <input
-        id="senha"
-        type="password"
-        placeholder="Senha"
-        autocomplete="current-password"
-        required
-      >
+  <main class="conteudo">
+    <h2>MENU STUDIO</h2>
 
-      <button type="submit">ENTRAR</button>
+    <div class="grid">
+      <a class="card" href="./DaunsPadrao.html">
+        <img src="./icon01.webp" alt="Dauns Padrão">
+        <h3>Dauns Padrão</h3>
+      </a>
 
-      <p id="mensagem"></p>
-    </form>
+      <a class="card" href="./DaunsLojista.html">
+        <img src="./icon02.webp" alt="Dauns Lojista">
+        <h3>Dauns Lojista</h3>
+      </a>
+
+      <a class="card" href="./DaunsSimplificado.html">
+        <img src="./icon03.webp" alt="Dauns Simplificado">
+        <h3>Dauns Simplificado</h3>
+      </a>
+
+      <a class="card" href="./DaunsImpressos.html">
+        <img src="./icon04.webp" alt="Dauns Impressos">
+        <h3>Dauns Impressos</h3>
+      </a>
+    </div>
   </main>
 
+  <footer>
+    Dauns Menu Studio ·
+    <a href="https://www.instagram.com/dauns.oficial/" target="_blank" rel="noopener noreferrer">
+      Instagram
+    </a>
+  </footer>
+
   <script>
-    const USUARIO = "daunsdigital";
-    const SENHA = "dauns001@";
+    document.getElementById("salvar").addEventListener("click", function() {
+      alert("As alterações devem ser salvas na ferramenta que você estiver utilizando.");
+    });
 
-    // Se já estiver logado, abre a página inicial.
-    if (sessionStorage.getItem("daunsLogado") === "sim") {
-      window.location.replace("./Home.html");
-    }
-
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const usuarioDigitado = document.getElementById("usuario").value.trim();
-      const senhaDigitada = document.getElementById("senha").value;
-
-      if (usuarioDigitado === USUARIO && senhaDigitada === SENHA) {
-        sessionStorage.setItem("daunsLogado", "sim");
-        window.location.replace("./Home.html");
-      } else {
-        document.getElementById("mensagem").textContent =
-          "Usuário ou senha incorretos.";
-      }
+    document.getElementById("sair").addEventListener("click", function() {
+      sessionStorage.removeItem("daunsLogado");
+      window.location.replace("./index.html");
     });
   </script>
 </body>
